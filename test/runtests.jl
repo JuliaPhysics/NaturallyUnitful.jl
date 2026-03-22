@@ -1,20 +1,22 @@
-using Test, NaturallyUnitful
-using NaturallyUnitful: c, ħ, ħc, kB, ϵ0
+using NaturallyUnitful
+using Unitful
+using Test
 
-@testset "tests" begin 
-    @test natural(1u"m") ≈ uconvert(u"eV^-1", 1u"m"/(ħc))
+@testset "NaturallyUnitful.jl" begin
+    @test natural(u"ħ^2 * c^0.5") ≈ 1
+    @test unitless(u"G*ħ*c") ≈ 1
+    @test natural(u"ft") ≈ natural(u"ns") rtol = 0.05
+    @test natdim(10u"m") == -1
+    @test natdim(u"c") == 0
+    @test natural(u"q^-2") ≈ 137 rtol = 0.05
 
-    @test unnatural(u"m", uconvert(u"eV^-1", 1u"m"/(ħc))) ≈ 1.0u"m"
+    weirdunits = NaturalSystem(2u"m/s", u"N", unit = u"kg")
 
-    @test natural(1e8u"m/s") ≈ convert(Float64, 1e8u"m/s"/c)
+    @test (@inferred natural(4u"m", weirdunits)) ≈ 1u"kg"
 
-    @test unnatural(u"m/s", convert(Float64, 1e8u"m/s"/c)) ≈ 1e8u"m/s"
+    @test unit(@inferred weirdunits(u"c")) == NoUnits
 
-    @test natural(1u"kg") ≈ uconvert(u"GeV", 1u"kg"*c^2)
-    
-    @test natural(1u"m", base=u"GeV") ≈ uconvert(u"GeV^-1", 1u"m"/(ħc)) 
+    @test (@inferred natural(u"G"^(-1//2), QG_UNITS, u"μg")) ≈ 21.7u"μg" rtol = 0.05
 
-    @test unnatural(u"K", 1u"eV") ≈ uconvert(u"K", 1u"eV"/kB)
-
-    @test unnatural(u"(m/s)^(3/2)", 1) ≈ uconvert(u"(m/s)^(3/2)", c^(3/2))
+    @inferred natural(u"kg^2 / m", PARTICLE_UNITS)
 end

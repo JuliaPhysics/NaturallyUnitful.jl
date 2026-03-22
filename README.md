@@ -1,45 +1,35 @@
-[![CI](https://github.com/MasonProtter/NaturallyUnitful.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/MasonProtter/NaturallyUnitful.jl/actions/workflows/ci.yml)
-
 # NaturallyUnitful.jl
+A Julia package implementing flexible conversions via natural units for [Unitful.jl](https://github.com/JuliaPhysics/Unitful.jl).
 
-This package reexports [Unitful.jl](https://github.com/ajkeller34/Unitful.jl) alongside two extra functions:
+- Define custom natural unit systems:
+    - Take any quantities to be 1
+    - Retain arbitrary combinations of units
+- Dynamically derives appropriate unit combinations
+- Evaluate mass-dimension (or equivalent) for any quantity or unit.
 
-1. `natural`, a function for converting a given quantity to the Physicist's so-called
-   "[natural units](https://en.wikipedia.org/wiki/Natural_units)", in which
- 
-   `ħ = c = ϵ₀ = kb = 1`
+Uses particle physics units (`c = ħ = k = 4πϵ₀ = 1`) by default, which are extended to include `G = 1` in `QG_UNITS` (available via `unitless`).
 
-   ```julia
-   julia> using NaturallyUnitful
+```julia
+    julia> using NaturallyUnitful, Unitful
 
-   julia> natural(1u"m")
-   5.067730759202785e6 eV^-1
-
-   julia> natural(3e8u"m/s")
-   1.000692285594456
-   ```
-
-   `natural` also accepts a keyword argument `base` (defaults to electron volts) which determines what unit
-   your natural quantity is constructed from. Currently, the `base` unit must have dimensions of energy. 
-
-   ```julia
-   julia> natural(1u"m", base=u"GeV")
-   5.067730759202785e15 GeV^-1
-   ```
-
-2. `unnatural`, a function for converting from natural units to a given `unnatural` unit such as meters
-
-   ```julia
-   julia> unnatural(u"m", 5.067730759202785e6u"eV^-1")
-   1.0 m
-
-   julia> unnatural(u"m/s", 1)
-   2.99792458e8 m s^-1
-   ```
-
-## Installation Instructions 
-
-To install, simply open the `pkg` prompt from the julia REPL by pressing `]`, and type:
+    julia> natdim(10u"N")
+    2//1
+    julia> natural(10u"N")
+    1.2316181391726781e13 eV^2
+    julia> unitless(10u"N")
+    8.262717639698035e-44
 ```
-pkg> add NaturallyUnitful
+
+Imagine you want to set `10N = 1`, for some reason...
+```julia
+    julia> weirdsys = NaturalSystem((u"m", u"s"), (10u"N",));
+
+    julia> weirdsys(u"kg")
+    0.1 s^2 m^-1
 ```
+
+## Main Interface
+- Convert units via `natural`, or into a number via `unitless`
+- Define a new natural unit system via `NaturalSystem`
+    - `NaturalSystem`s can be called as functions like `natural` for convenience
+- Get natural dimensions using `natdims`/`natdim`
