@@ -2,9 +2,9 @@
 A Julia package implementing flexible conversions via natural units for [Unitful.jl](https://github.com/JuliaPhysics/Unitful.jl). Reexports Unitful.
 
 - Define custom natural unit systems:
-    - Take any quantities to be 1
-    - Retain arbitrary combinations of units
-- Dynamically derives appropriate unit combinations
+    - Take any quantities to be 1.
+    - Retain arbitrary combinations of units.
+- Dynamically derives appropriate unit combinations.
 - Evaluate mass-dimension (or equivalent) for any quantity or unit.
 
 Includes two standard unit systems:
