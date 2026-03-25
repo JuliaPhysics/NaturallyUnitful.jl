@@ -3,7 +3,8 @@ module NaturallyUnitful
 export natural, unitless, natdims, natdim, naturalunit
 export NaturalSystem, PARTICLE_UNITS, QG_UNITS
 
-using Unitful
+using Reexport
+@reexport using Unitful
 using Unitful: Units, Dimension, Dimensions
 using LinearAlgebra
 using StaticArrays
