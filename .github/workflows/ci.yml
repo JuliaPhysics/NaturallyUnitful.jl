@@ -54,3 +54,13 @@ jobs:
           path-to-lcov: lcov.info
           flag-name: run-${{ join(matrix.*, '-') }}
           parallel: true
+
+  finish:
+    needs: test
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@v2
+      with:
+        parallel-finished: true
