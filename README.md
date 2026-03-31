@@ -1,6 +1,6 @@
 [![CI](https://github.com/JuliaPhysics/NaturallyUnitful.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/JuliaPhysics/NaturallyUnitful.jl/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/JuliaPhysics/NaturallyUnitful.jl/badge.svg)](https://coveralls.io/github/JuliaPhysics/NaturallyUnitful.jl)
-[![codecov.io](https://codecov.io/github/JuliaPhysics/NaturallyUnitful.jl/coverage.svg?branch=master)](https://codecov.io/github/JuliaPhysics/NaturallyUnitful.jl?branch=master)
+[![codecov.io](https://codecov.io/github/JuliaPhysics/NaturallyUnitful.jl/coverage.svg)](https://codecov.io/github/JuliaPhysics/NaturallyUnitful.jl)
 
 # NaturallyUnitful.jl
 A Julia package implementing flexible conversions via natural units for [Unitful.jl](https://github.com/JuliaPhysics/Unitful.jl). Reexports Unitful.
