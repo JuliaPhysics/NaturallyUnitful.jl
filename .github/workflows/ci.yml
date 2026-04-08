@@ -26,7 +26,8 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - '1.12' 
+          - 'min'
+          - '1.12'
           - '1'
         os:
           - ubuntu-latest
@@ -46,7 +47,7 @@ jobs:
       - uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: lcov.info
+          files: lcov.info
           fail_ci_if_error: false
       - uses: coverallsapp/github-action@v2
         with:
