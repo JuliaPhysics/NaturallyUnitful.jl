@@ -34,6 +34,15 @@ For quantities that are unitless in a given system, the exact unit specified wil
     julia> natural(10u"N", unitless, u"s^-1")
     1.5326173119543876 s^-1
 ```
+To explicitly check that dimensionless quantities are returned as regular floats, specify `NoUnits`, for
+example
+```julia
+julia> natural(1u"km/s", NoUnits)
+3.3356409519815205e-6
+
+julia> natural(1u"kg", NoUnits)
+ERROR: DimensionError:  and kg c^2 are not dimensionally compatible.
+```
 The unit that will be used by `natural` can be found using `naturalunit`.
 ```julia
     julia> naturalunit(10u"N")

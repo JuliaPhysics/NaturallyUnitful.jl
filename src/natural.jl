@@ -58,6 +58,9 @@ naturalunit(q, units::Units...) = naturalunit(q, DEFAULT_UNITS, units...)
 
 Express `q` in terms of the produts of the given `units`, using natural conversions from `system`.
 If no `units` are specified, uses the default units for `system`. 
+
+To explicilty check that the the returned values is dimensionless and therefore of a `Real` type, set
+`NoUnits`, e.g. `natural(q, sys, NoUnits)`.
 """
 function natural(q, system::NaturalSystem, units::Units...)
     unit = naturalunit(q, system, units...)
