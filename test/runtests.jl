@@ -19,4 +19,6 @@ using Test
     @test (@inferred natural(u"G"^(-1//2), QG_UNITS, u"μg")) ≈ 21.7u"μg" rtol = 0.05
 
     @inferred natural(u"kg^2 / m", PARTICLE_UNITS)
+
+    @test_throws Unitful.DimensionError natural(1u"kg", NoUnits)
 end
