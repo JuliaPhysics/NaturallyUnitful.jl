@@ -67,6 +67,20 @@ end
 
 natural(q, units::Units...) = natural(q, DEFAULT_UNITS, units...)
 
+"""
+    dimless([T=Real], q, system::NaturalSystem=DEFAULT_UNITS)
+
+Convert a quantity `q` which is dimensionless in unit system `system` to type `T`, throwing
+an error if `q` is dimensionful.
+"""
+function dimless(::Type{T}, q, system::NaturalSystem=DEFAULT_UNITS)::T where {T}
+    # Unitful.jl can return non-T from T constructors!
+    # therefore the type assertion of the function return above is crucial
+    T(natural(q, system))
+end
+
+dimless(q, system::NaturalSystem=DEFAULT_UNITS) = dimless(Real, q, system)
+
 # For convenience when using custom unit systems
 (system::NaturalSystem)(q, units::Units...) = natural(q, system, units...)
 

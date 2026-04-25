@@ -19,4 +19,11 @@ using Test
     @test (@inferred natural(u"G"^(-1//2), QG_UNITS, u"μg")) ≈ 21.7u"μg" rtol = 0.05
 
     @inferred natural(u"kg^2 / m", PARTICLE_UNITS)
+
+    @test dimless(1u"c") ≈ 1
+    @test dimless(Float32, 1u"m/s") isa Float32
+    @test_throws MethodError dimless(1u"kg")
+
+    @inferred dimless(1u"c")
+    @inferred dimless(Float32, 0.1u"nC")
 end

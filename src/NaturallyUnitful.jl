@@ -1,6 +1,6 @@
 module NaturallyUnitful
 
-export natural, unitless, natdims, natdim, naturalunit
+export natural, dimless, unitless, natdims, natdim, naturalunit
 export NaturalSystem, PARTICLE_UNITS, QG_UNITS
 
 using Reexport

@@ -1,6 +1,6 @@
 name = "NaturallyUnitful"
 uuid = "872cf16e-200e-11e9-2cdf-8bb39cfbec41"
-version = "1.0.0"
+version = "1.1.0"
 authors = ["MasonProtter <mason.protter@gmail.com>", "Lucas Gathercole <lucas.gathercole@gmail.com>"]
 
 [deps]
